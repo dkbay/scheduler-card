@@ -66,6 +66,9 @@ export class SchedulerTimeslotEditor extends LitElement {
 
     const segmentWidth = amPm ? 130 : 100;
     let stepSize = Math.ceil(24 / (fullWidth / segmentWidth));
+    if (stepSize > allowedStepSizes[-1]) {
+      stepSize = allowedStepSizes[-1];
+    }
     while (!allowedStepSizes.includes(stepSize)) stepSize++;
 
     const nums = [0, ...Array.from(Array(24 / stepSize - 1).keys()).map(e => (e + 1) * stepSize), 24];
